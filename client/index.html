@@ -1,0 +1,35 @@
+<head>
+    <title translate="APPNAME">Booker</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico">
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+    <!-- default themes and core styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.2/angular-material.min.css">
+    <link href="/index.css" rel="stylesheet">
+</head>
+<body ng-app="booker">
+    <header>
+    <md-toolbar md-scroll-shrink layout="row" layout-align="start center" layout-padding>
+        <div class="md-title"><b>B</b>ook&<b>B</b>ooker</div>
+        <span flex></span>
+        <div>
+            <md-button   ui-sref-active="active" ui-sref="login" ng-hide="isLoggedIn">
+                <md-icon md-font-set="material-icons">archive</md-icon>
+                {{ 'LOGIN' | translate }}
+            </md-button>
+            <md-button  ui-sref-active="active" ui-sref="register" ng-hide="isLoggedIn">
+                <md-icon md-font-set="material-icons">create</md-icon>
+                {{ 'REGISTER' | translate }}
+            </md-button>
+            <md-button   ui-sref-active="active" ng-click="vacuum()" ui-sref="logout" ng-show="isLoggedIn">
+                <md-icon md-font-set="material-icons">unarchive</md-icon>
+                {{ 'LOGOUT' | translate }}
+            </md-button>
+        </div>
+    </md-toolbar>
+    </header>
+    <md-content ui-view layout="column" flex="100"></md-content>
+</body>

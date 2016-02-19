@@ -1,0 +1,101 @@
+<md-content layout="column" layout-gt-sm="row" flex="100">
+    <md-fab-speed-dial class="md-fab-top-right">
+      <md-fab-trigger>
+        <md-button  class="md-fab md-fab-right md-accent" aria-label="{{ 'ADD' | translate }}" ng-click="addItem();">
+            <md-tooltip md-direction="left">
+                {{ 'CLICK_TO_ADD' | translate }}
+            </md-tooltip>
+            <md-icon md-font-set="material-icons"> add </md-icon>
+        </md-button>
+      </md-fab-trigger>
+    </md-fab-speed-dial>
+    <md-content layout="column"  flex>
+        <md-toolbar class="md-accent" layout="row" layout-align="start center">
+            <span class="md-title layout-padding">{{ 'MY_ITEMS' | translate }}</span>
+            <span flex></span>
+            <md-input-container layout-margin>
+                <label>{{ 'FILTER' | translate }}</label>
+                <md-select  class="font-light" aria-label="categories" ng-model="cat">
+                    <md-option value="{{ c.name }}"  ng-repeat="c in categories">{{ c.name | translate }}</md-option>
+                </md-select>
+            </md-input-container>
+        </md-toolbar>
+        <table class="md-table md-table--bordered" style="width:100%">
+            <tbody>
+                <tr dir-paginate="i in items | itemsPerPage: perPage" total-items="itemsCount"
+                  ng-class="{ active: i._id == currentItemId }" 
+                  ng-href="" ng-click="displayItem(i._id)">
+                    <td>{{ i.itemName }}</td>
+                    <td>{{ i.description }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div layout="row" layout-align="start center" id="bottombar">
+          <dir-pagination-controls template-url="client/lib/pagination-tmpl.ng.html" 
+              on-page-change="pageChanged(newPageNumber)" ng-show="itemsCount"></dir-pagination-controls>
+        </div>
+    </md-content>
+    <!-- form -->
+    <md-content layout="column" layout-padding flex>
+        <form name="itemForm">
+            <md-card ng-show="item">
+                <md-card-title>
+                  <md-card-content>
+                      <div layout="column">
+                        <div layout="column" layout-gt-sm="row">
+                            <md-input-container>
+                                <label>{{ 'ITEM_NAME' | translate }}</label>
+                                  <input aria-label="item name" type="text" ng-model="item.itemName" name="itemName">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>{{ 'CATEGORY' | translate }}</label>
+                                <md-select aria-label="categories" ng-model="item.category" name="category">
+                                    <md-option value="{{ c.name }}" ng-repeat="c in categories">{{ c.name | translate }}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>  
+                        <md-input-container>
+                            <label>{{ 'DESCRIPTION' | translate }}</label>
+                            <textarea type="text" ng-model="item.description" name="description">
+                            </textarea>
+                        </md-input-container>
+                        <md-chips
+                            style="max-width:250px;"
+                            ng-model="item.tags"
+                            placeholder="Enter a tag"
+                            delete-button-label="Remove Tag"
+                            delete-hint="Press delete to remove tag"
+                            secondary-placeholder="+Tag">
+                        </md-chips>
+                    </div>
+                  </md-card-content>
+                  <md-card-title-media layout-align="center">
+                    <div class="md-media-lg card-media">
+                        <div ngf-drop ngf-select
+                             ngf-change="addImages($files, $event)"
+                             ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                             ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+                             ngf-drop-available="true">
+                          <div ng-hide="item.imageURL" class="md-caption">{{ 'PHOTO_UPLOAD' | translate }}</div>
+                          <div ng-show="item.imageURL"><img src="{{ item.imageURL }}" ></div>
+                        </div>
+                    </div>
+                    <md-input-container>
+                                <label>{{ 'AVAILABLE' | translate }}</label>
+                                <md-switch class="md-warn" aria-label="available" ng-change="save()" ng-model="item.available"></md-switch>
+                    </md-input-container>
+                  </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-button md-accent" ng-click="save()">
+                        <md-icon aria-label="{{ 'SAVE' | translate }}" md-font-set="material-icons">save</md-icon>
+                    </md-button>
+                    <md-button class="md-button md-accent" ng-click="deleteItem()">
+                        <md-icon aria-label="{{ 'DELETE' | translate }}" md-font-set="material-icons">delete</md-icon>
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </form>
+    </md-content>
+</md-content>

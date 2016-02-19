@@ -1,0 +1,48 @@
+<md-content layout="row" flex class="" layout-align="space-around"  layout-padding>
+    <!--Looking booking-->
+    <md-content flex layout="column" layout-align="center">
+        <md-toolbar class="md-accent md-title"  layout-padding layout-align="center start">I want to Book!</md-toolbar>
+        <form name="looking" layout-align="center" class="md-whiteframe-1dp" layout-padding>
+            <div  layout="column"  layout-padding>
+            <md-input-container>
+                <label>{{ 'SEARCH' | translate }}</label>
+                <input type="text" name="search" ng-model="search" />
+            </md-input-container>
+            <md-input-container>
+                <label>{{ 'CATEGORY' | translate }}</label>
+                <md-select aria-label="categories" ng-model="lookCategory">
+                    <md-option value="{{ c.name }}" ng-repeat="c in categories">{{ c.name | translate }}</md-option>
+                </md-select>
+            </md-input-container>
+            <div layout="column" layout-gt-sm="row">
+                <md-datepicker name="startDate" ng-model="startDate"></md-datepicker>
+                <md-datepicker name="endDate" ng-model="endDate"></md-datepicker>
+            </div>
+            <div layout="column" layout-gt-sm="row" layout-padding layout-align="center end">
+                <md-button  class="md-primary md-raised">
+                    {{ 'GO' | translate }}
+                </md-button>
+            </div>
+            </div>
+        </form>
+    </md-content>
+    <span flex="10"></span>
+    <!--Booker-->
+    <md-content layout="column" flex>
+        <md-toolbar class="md-warn md-title"  layout-padding layout-align="center start">I am a Booker!</md-toolbar>
+        <form layout = "column" name="booking" layout-align="center" class="md-whiteframe-1dp" layout-padding>
+            <md-input-container  layout-padding>
+                <label>{{ 'CATEGORY' | translate }}</label>
+                <md-select aria-label="categories" ng-model="bookCategory">
+                    <md-option value="{{ c.name }}" ng-repeat="c in categories">{{ c.name }}</md-option>
+                </md-select>
+            </md-input-container>
+            <div layout="column" layout-gt-sm="row" layout-padding layout-align="center end">
+                <md-button ui-sref="admin()" class="md-primary md-raised">
+                    {{ 'ADMIN' | translate }}
+                </md-button>
+            </div>
+        </form>
+    </md-content>
+
+</md-content>

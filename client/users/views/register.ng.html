@@ -1,0 +1,42 @@
+<md-content flex layout="row" layout-xs="column" layout-padding layout-align="center start">
+  <md-content class="" layout="column" layout-padding layout-align="center start" >
+    <form>
+      <div layout="row" layout-align="start center" class="md-title">
+        {{ 'SIGNUP' | translate }}
+      </div>
+      <md-divider></md-divider>
+      <md-input-container class="md-icon-float md-block">
+        <label>{{ 'EMAIL' | translate }}</label>
+        <md-icon md-font-set="material-icons" class="md-primary">email</md-icon>
+        <input type="email" ng-model="user.email" />
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <label>{{ 'LANGUAGE' | translate }}</label>
+        <md-icon md-font-set="material-icons" class="md-primary">language</md-icon>
+        <md-select  ng-change="changeLang()" ng-model="user.profile.language">
+          <md-option value="tr" selected><img ng-src="/img/tr.png" class="select-icon"/>{{ 'TURKISH' | translate }}</md-option>
+          <md-option value="en"><img ng-src="/img/us.png" class="select-icon"/>{{ 'ENGLISH' | translate }}</md-option>
+          <md-option value="al"><img ng-src="/img/al.png" class="select-icon"/>{{ 'ALBANIAN' | translate }}</md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <label>{{ 'PASSWORD' | translate }}</label>
+        <md-icon md-font-set="material-icons" class="md-primary">lock_open</md-icon>
+        <input type="password" ng-model="user.password" />
+      </md-input-container>
+      <section layout="row" layout-align="end center" layout-wrap>
+        <md-button class="md-primary md-mini" ng-click="register()">
+          {{ 'SIGNUP' | translate }}
+        </md-button>
+      </section>
+    </form>
+  </md-content>
+  <md-content  ng-show="$mdMedia('gt-sm');"  layout="column" class="md-whiteframe-4dp">
+    <div>
+      <img ng-src="/img/1.png" />
+      <h3 align="center">
+        {{ 'BANNER_TEXT' | translate }}
+      </h3>
+    </div>
+  </md-content>
+</md-content>

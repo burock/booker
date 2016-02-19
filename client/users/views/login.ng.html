@@ -1,0 +1,49 @@
+<md-content flex layout="row" layout-xs="column" layout-padding layout-align="center start" >
+  <md-content layout="column" class="">
+    <div>
+      <img ng-src="/img/1.png" />
+      <h3 align="center">
+        {{ 'BANNER_TEXT' | translate }}<a ng-href="/register">{{ 'NOW' | translate }}</a>
+      </h3>
+    </div>
+  </md-content>
+  <span flex="5"></span>
+  <md-content layout="column" layout-padding  >
+    <form>
+      <div flex="100" layout-align="start center" class="md-title" layout-padding>
+      {{ 'WELCOME_BACK' | translate }}
+      </div>
+      <md-divider></md-divider>
+      <div ng-show="lc.error">
+        <small class="md-warn">{{ lc.error.reason }}</small>
+      </div>
+      <md-input-container class="md-icon-float md-block">
+           <label>{{ 'EMAIL' | translate }}</label>
+           <md-icon md-font-set="material-icons" class="">email</md-icon>
+           <input type="email" ng-model="lc.credentials.email" />
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+         <label>{{ 'PASSWORD' | translate }}</label>
+         <md-icon md-font-set="material-icons"  class="">lock_open</md-icon>
+        <input type="password" ng-model="lc.credentials.password" />
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <label>{{ 'LANGUAGE' | translate }}</label>
+        <md-icon md-font-set="material-icons" class="md-primary">language</md-icon>
+        <md-select  ng-change="lc.changeLang()" ng-model="lc.credentials.profile.language">
+          <md-option value="tr" selected><img ng-src="/img/tr.png" class="select-icon"/>&nbsp;&nbsp;{{ 'TURKISH' | translate }}</md-option>
+          <md-option value="en"><img ng-src="/img/us.png" class="select-icon"/>&nbsp;&nbsp;{{ 'ENGLISH' | translate }}</md-option>
+          <md-option value="al"><img ng-src="/img/al.png" class="select-icon"/>&nbsp;&nbsp;{{ 'ALBANIAN' | translate }}</md-option>
+        </md-select>
+      </md-input-container>      
+      <section layout="column" layout-align="center center" layout-wrap>
+        <md-button class="md-accent md-mini" ng-click="lc.login()"
+            aria-label="login">{{ 'LOGIN' | translate }}
+        </md-button>
+        <md-button class="md-accent  md-mini" ng-click="$state.go('resetpw');">
+        {{ 'FORGOT_PASSWORD' | translate }}
+        </md-button>
+      </section>
+    </form>
+  </md-content>
+</md-content>
